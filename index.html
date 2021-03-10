@@ -1,0 +1,57 @@
+<body></body>
+<script src="/three.js"></script>
+<script>
+  // The "scene" is where stuff in our game will happen:
+  var scene = new THREE.Scene();
+  var flat = {flatShading: true};
+  var light = new THREE.AmbientLight('white', 0.8);
+  scene.add(light);
+
+  // The "camera" is what sees the stuff:
+  var aspectRatio = window.innerWidth / window.innerHeight;
+  var camera = new THREE.PerspectiveCamera(75, aspectRatio, 1, 10000);
+  camera.position.z = 500;
+  scene.add(camera);
+
+  // The "renderer" draws what the camera sees onto the screen:
+  var renderer = new THREE.WebGLRenderer({antialias: true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // ******** START CODING ON THE NEXT LINE ********
+var tablero = new THREE.BoxGeometry(500,20,500);
+var pata = new THREE.BoxGeometry(20,200,20);
+var pata2 = new THREE.BoxGeometry(20,200,20);
+var pata3 = new THREE.BoxGeometry(20,200,20);
+var pata4 = new THREE.BoxGeometry(20,200,20);
+var material = new THREE.MeshNormalMaterial(flat);
+var tablero_flat = new THREE.Mesh(tablero, material);
+var pata_flat = new THREE.Mesh(pata, material);
+var pata2_flat = new THREE.Mesh(pata2, material);
+var pata3_flat = new THREE.Mesh(pata3, material);
+var pata4_flat = new THREE.Mesh(pata4, material);
+
+scene.add(tablero_flat);
+scene.add(pata_flat);
+scene.add(pata2_flat);
+scene.add(pata3_flat);
+scene.add(pata4_flat);
+tablero_flat.rotation.set(0,0,0);
+tablero_flat.position.set(0,0,0);
+pata_flat.rotation.set(0,0,0);
+pata_flat.position.set(240,-100,240);
+pata2_flat.rotation.set(0,0,0);
+pata2_flat.position.set(-240,-100,240);
+pata3_flat.rotation.set(0,0,0);
+pata3_flat.position.set(-240,-100,-240);
+pata4_flat.rotation.set(0,0,0);
+pata4_flat.position.set(240,-100,-240);
+
+camera.position.set(500,50,700);
+camera.lookAt(tablero_flat.position);
+
+
+
+  // Now, show what the camera sees on the screen:
+  renderer.render(scene, camera);
+</script>
